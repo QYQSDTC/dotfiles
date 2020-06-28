@@ -1,0 +1,18 @@
+Host github
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/github
+
+Host ls5
+	Hostname ls5.tacc.utexas.edu
+	User qyqstc
+	controlmaster auto
+    controlpath /tmp/ssh-%r@%h:%p
+    ControlPersist yes
+
+Host s2
+	Hostname stampede2.tacc.utexas.edu
+	User qyqstc
+	controlmaster auto
+    controlpath /tmp/ssh-%r@%h:%p
+    ControlPersist yes
