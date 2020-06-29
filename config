@@ -8,11 +8,11 @@ Host ls5
 	User qyqstc
 	controlmaster auto
     controlpath /tmp/ssh-%r@%h:%p
-    ControlPersist yes
+    ControlPersist 2h
 
 Host s2
 	Hostname stampede2.tacc.utexas.edu
 	User qyqstc
 	controlmaster auto
     controlpath /tmp/ssh-%r@%h:%p
-    ControlPersist yes
+    ControlPersist 2h
