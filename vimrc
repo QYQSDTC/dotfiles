@@ -30,7 +30,8 @@ Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'suan/vim-instant-markdown'
-Plugin 'lilydjwg/fcitx.vim'
+" Plugin 'lilydjwg/fcitx.vim' Disabled because of "socket file of fcitx not
+" found, fcitx.vim not loaded."
 " 插件列表结束
 call vundle#end()
 filetype plugin indent on
@@ -136,7 +137,8 @@ set shiftwidth=4
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 " 取消换行
-set nowrap
+" set nowrap
+set wrap " 启用自动换行
  
 " 在被分割的窗口间显示空白
 set fillchars=vert:\ ,stl:\ ,stlnc:\
