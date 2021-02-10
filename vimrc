@@ -112,7 +112,8 @@ set cmdheight=2
 set showmatch
  
 " 在搜索的时候忽略大小写
-set ignorecase
+" set ignorecase
+set smartcase
  
 " 高亮被搜索的句子
 set hlsearch
