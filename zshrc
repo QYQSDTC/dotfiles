@@ -131,7 +131,7 @@ alias cpath='pwd|pbcopy' # copy current directory path
 pyup () {
 	print -P "%B%F{blue}==> %fUpdating pip\n========="
 	pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U --user
-    pip install -U --user pip setuptools
+    # pip install -U --user pip setuptools # let Macports control pip's verison
 	print -P "%B%F{red}==> %fUPDATE FINISHED"
   #  pipsi upgrade poetry
 }
@@ -296,16 +296,33 @@ eval $(thefuck --alias)
 # [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # MATLAB
-export PATH="/Applications/MATLAB_R2020a.app/bin:$PATH"
+# export PATH="/Applications/MATLAB_R2020a.app/bin:$PATH"
+
+# HDF5
+export HDF5_LIBDIR="/opt/local/lib"
+export HDF5_INCLUDEDIR="/opt/local/include"
 
 # Python3.8
-export PATH="/Users/qyq/Library/Python/3.8/bin:$PATH"
+# export PATH="$PATH:/Users/yiqianqian/Library/Python/3.8/bin"
+export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages:$PYTHONPATH"
+# Set PIP_TARGET to install packages into MacPorts Dir, if meet 'Cannot set --home and --prefix together' error when installing packages, comment command below.
+export PIP_TARGET="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages"
 
+# SuiteSparse
+export SUITESPARSE_INCLUDE_DIR="/opt/local/include"
+export SUITESPARSE_LIBRARY_DIR="/opt/local/lib"
+
+# TA-Lib
+export TA_INCLUDE_PATH="$(brew --prefix ta-lib)/include"
+export TA_LIBRARY_PATH="$(brew --prefix ta-lib)/lib"
+
+# PKG Config Path
+export PKG_CONFIG_PATH='$PKG_CONFIG_PATH:/opt/local/lib/pkgconfig'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/qyq/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f '/Users/qyq/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/qyq/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/completion.zsh.inc'; fi
+# if [ -f '/Users/qyq/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/completion.zsh.inc'; fi

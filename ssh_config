@@ -8,17 +8,30 @@ Host ls5
   User qyqstc
   ControlMaster auto
   ControlPath /tmp/ssh-%r@%h:%p
-  ControlPersist 2h
+  ControlPersist 1h
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/ls5
+  IdentityFile ~/.ssh/id_ls5
   ServerAliveInterval 10
   ServerAliveCountMax 5
 
 Host s2
   Hostname stampede2.tacc.utexas.edu
   User qyqstc
-  controlmaster auto
-  controlpath /tmp/ssh-%r@%h:%p
-  ControlPersist 2h
+  Controlmaster auto
+  Controlpath /tmp/ssh-%r@%h:%p
+  ControlPersist 1h
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_s2
   ServerAliveInterval 10
   ServerAliveCountMax 5
+
+Host hust
+	Hostname 115.156.147.71
+	User qyq
+	Controlmaster auto
+	Controlpath /tmp/ssh-%r@%h:%p
+	ControlPersist 1h
+	AddKeysToAgent yes
+	IdentityFile ~/.ssh/hust
+	ServerAliveInterval 10
+	ServerAliveCountMax 5

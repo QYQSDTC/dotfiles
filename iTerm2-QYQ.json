@@ -119,10 +119,10 @@
         "class" : "iTermStatusBarGitComponent",
         "configuration" : {
           "knobs" : {
-            "minwidth" : 0,
-            "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "base: compression resistance" : 1,
+            "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "base: priority" : 5,
+            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.63,
               "Color Space" : "sRGB",
@@ -149,8 +149,8 @@
               "Green Component" : 0.63
             },
             "base: priority" : 5,
-            "base: compression resistance" : 1,
             "minwidth" : 0,
+            "base: compression resistance" : 1,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -479,7 +479,7 @@
   },
   "Session Close Undo Timeout" : 10,
   "Blur" : true,
-  "Normal Font" : "HackNerdFontCompleteM-Regular 20",
+  "Normal Font" : "MesloLGS-NF-Regular 20",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.93123704195022583,
@@ -500,7 +500,6 @@
     "Alpha Component" : 1,
     "Green Component" : 0.93136489391326904
   },
-  "Unicode Version" : 8,
   "Ansi 6 Color" : {
     "Red Component" : 0.54558646678924561,
     "Color Space" : "Calibrated",
@@ -539,6 +538,5 @@
     "Blue Component" : 0.70531737804412842,
     "Alpha Component" : 1,
     "Green Component" : 0.29879066348075867
-  },
-  "Set Local Environment Vars" : false
+  }
 }
