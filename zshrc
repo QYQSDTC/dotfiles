@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-autosuggestions extract zsh-syntax-highlighting pip)
+plugins=( git z zsh-autosuggestions extract zsh-syntax-highlighting )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,14 +106,20 @@ source $ZSH/oh-my-zsh.sh
  alias bubu='bubo && bubc'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls='clear'
-alias ll='ls -l'
-alias la='ls -a'
+alias ls='exa --icons'
+alias ll='exa -l -g --icons'
+alias la='ll -a'
+alias gg='ghq get'
+alias lt='exa --tree --icons --level=3'
 alias grep="grep --color=auto"
-# alias vscode="open -a  Visual\ Studio\ Code.app"
+alias vscode="open -a  Visual\ Studio\ Code.app"
+alias Typora="open -a Typora.app"
 
 alias -s html='vim'   # 在命令行直接输入后缀为 html 的文件名，会在 Vim 中打开
 alias -s rb='vim'     # 在命令行直接输入 ruby 文件，会在 Vim 中打开
 # alias -s py='vscode'      # 在命令行直接输入 python 文件，会用 vscode 中打开，以下类似
+alias -s md='Typora'
+alias -s ipynb='vscode'
 alias -s js='vim'
 alias -s c='vscode'
 alias -s json='vscode'
@@ -125,13 +131,14 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 alias cpath='pwd|pbcopy' # copy current directory path
+alias ptop='bpytop'
 
 # useful functions
 # make life easier
 pyup () {
 	print -P "%B%F{blue}==> %fUpdating pip\n========="
 	pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U --user
-    # pip install -U --user pip setuptools # let Macports control pip's verison
+    pip install -U --user pip setuptools
 	print -P "%B%F{red}==> %fUPDATE FINISHED"
   #  pipsi upgrade poetry
 }
@@ -178,6 +185,12 @@ fileN(){
 	ls | wc -l
 }
 
+# Reset iCloud service when iCloud got stuck
+rstcld(){
+	killall bird
+	killall cloudd
+	echo 'iCloud services are restarted'
+}
 # Proxy list 
 export http_proxy="http://0.0.0.0:8888"
 export https_proxy="http://0.0.0.0:8888"
@@ -237,12 +250,6 @@ fcd(){
 # The Fuck
 eval $(thefuck --alias)
 
-# pkg-config
-# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
-# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig"
-# export LDFLAGS="-L/usr/local/opt/zlib/lib $LDFLAGS"
-# export CFLAGS="-I/usr/local/opt/zlib/include $CFLAGS"
-
 # LLVM
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
 # export LDFLAGS="$LDFLAGS -L/usr/local/opt/llvm/lib"
@@ -298,31 +305,45 @@ eval $(thefuck --alias)
 # MATLAB
 # export PATH="/Applications/MATLAB_R2020a.app/bin:$PATH"
 
-# HDF5
-export HDF5_LIBDIR="/opt/local/lib"
-export HDF5_INCLUDEDIR="/opt/local/include"
+# Python 3.8
+export PATH="$PATH:/Users/qyq/Library/Python/3.8/bin" # user packages first
+# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin" # global packages
+# export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages:$PYTHONPATH"
 
-# Python3.8
-# export PATH="$PATH:/Users/yiqianqian/Library/Python/3.8/bin"
-export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages:$PYTHONPATH"
-# Set PIP_TARGET to install packages into MacPorts Dir, if meet 'Cannot set --home and --prefix together' error when installing packages, comment command below.
-export PIP_TARGET="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages"
+# Python 3.9
+# export PATH="$PATH:/Users/qyq/Library/Python/3.9/bin"
+# Python site-package version: port first.
 
-# SuiteSparse
+# PKG Config PATH
+export PKG_CONFIG_PATH='$PKG_CONFIG_PATH:/opt/local/lib/pkgconfig'
+
+# Suite Sparse
 export SUITESPARSE_INCLUDE_DIR="/opt/local/include"
 export SUITESPARSE_LIBRARY_DIR="/opt/local/lib"
 
-# TA-Lib
-export TA_INCLUDE_PATH="$(brew --prefix ta-lib)/include"
-export TA_LIBRARY_PATH="$(brew --prefix ta-lib)/lib"
+# TEMPO2
+# export TEMPO2="/opt/local/share/tempo2"
 
-# PKG Config Path
-export PKG_CONFIG_PATH='$PKG_CONFIG_PATH:/opt/local/lib/pkgconfig'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/Users/qyq/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/path.zsh.inc'; fi
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/qyq/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/qyq/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/qyq/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/qyq/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-# The next line enables shell command completion for gcloud.
-# if [ -f '/Users/qyq/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/qyq/google-cloud-sdk/completion.zsh.inc'; fi
+# deactivate conda
+alias dc="conda deactivate"
+
+# activate pulsar software env
+alias psr='conda activate psrsoftwares'
