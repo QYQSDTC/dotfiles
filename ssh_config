@@ -1,7 +1,9 @@
-Host *
+Host github.com
+  HostName ssh.github.com
   AddKeysToAgent yes
   UseKeychain yes
-  IdentityFile ~/.ssh/github
+  IdentityFile ~/.ssh/github2
+  Port 443 # 梯子封禁了22端口
 
 Host ls5
   Hostname ls5.tacc.utexas.edu
