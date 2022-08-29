@@ -10,7 +10,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/phd'
-Plugin 'Lokaltog/vim-powerline'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'derekwyatt/vim-fswitch'
@@ -26,14 +25,46 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'derekwyatt/vim-protodef'
 Plugin 'scrooloose/nerdtree'
-Plugin 'fholgado/minibufexpl.vim'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'instant-markdown/vim-instant-markdown'
-" Plugin 'lilydjwg/fcitx.vim' Disabled because of "socket file of fcitx not
-" found, fcitx.vim not loaded."
+
+" Here after takes the dofiles from https://github.com/craftzdog/dotfiles-public, tutorial https://www.youtube.com/watch?v=ajmK0ZNcM4Q&list=PL0UdL6rhCWgIfsGSD9PriRudJAARDlo0M&index=4&t=2279s
+Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" LSP configure
+Plugin 'onsails/lspkind-nvim' " vscode-like pictograms
+Plugin 'hrsh7th/cmp-buffer' " nvim-cmp source for buffer words
+Plugin 'hrsh7th/cmp-nvim-lsp' " nvim-cmp source for neovim's built-in LSP
+Plugin 'hrsh7th/nvim-cmp' " Completion
+Plugin 'neovim/nvim-lspconfig' " LSP
+Plugin 'glepnir/lspsaga.nvim' " LSP UIs
+Plugin 'L3MON4D3/LuaSnip' " LuaSnip
+Plugin 'windwp/nvim-autopairs'
+Plugin 'windwp/nvim-ts-autotag'
+
+" setup telescope
+Plugin 'nvim-lua/plenary.nvim' " common utilities
+Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'nvim-telescope/telescope-file-browser.nvim'
+Plugin 'kyazdani42/nvim-web-devicons'
+
+" setup bufferline
+Plugin 'akinsho/nvim-bufferline.lua'
+Plugin 'norcalli/nvim-colorizer.lua'
+" setup lualine statusline
+Plugin 'nvim-lualine/lualine.nvim'
+" setup Code formatter
+Plugin 'jose-elias-alvarez/null-ls.nvim' " Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+Plugin 'MunifTanjim/prettier.nvim' " Prettier plugin for Neovim's built-in LSP client
+" setup git
+Plugin 'lewis6991/gitsigns.nvim'
+Plugin 'dinhhuy258/git.nvim' " for git blame & browser
+
+Plugin 'lukas-reineke/indent-blankline.nvim' " customize indent lines
+
+" Setup NeoVim for LaTex editing
 " Set up vimtex + ultisnips
 Plugin 'sirver/UltiSnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
