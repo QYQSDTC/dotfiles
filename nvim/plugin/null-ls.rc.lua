@@ -10,8 +10,9 @@ null_ls.setup {
 		}),
 		null_ls.builtins.diagnostics.zsh,
 		null_ls.builtins.formatting.prettier.with({
-			filetypes = {'python', 'c', 'cpp', 'markdown', 'lua'}
-		})
+			filetypes = { 'python', 'c', 'cpp', 'markdown', 'lua' }
+		}),
+		null_ls.builtins.formatting.autopep8
 	},
 	on_attach = function(client, bufnr)
 		if client.server_capabilities.documentFormattingProvider then
