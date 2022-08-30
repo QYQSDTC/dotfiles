@@ -9,10 +9,13 @@ null_ls.setup {
 			diagnostics_format = '[eslint] #{m}\n(#{c})'
 		}),
 		null_ls.builtins.diagnostics.zsh,
+		null_ls.builtins.diagnostics.cppcheck,
+		null_ls.builtins.diagnostics.flake8,
 		null_ls.builtins.formatting.prettier.with({
-			filetypes = { 'python', 'c', 'cpp', 'markdown', 'lua' }
+			filetypes = { "html", "json", "yaml", "markdown" }
 		}),
-		null_ls.builtins.formatting.autopep8
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.clang_format
 	},
 	on_attach = function(client, bufnr)
 		if client.server_capabilities.documentFormattingProvider then
