@@ -12,9 +12,6 @@ prettier.setup {
 		"json",
 		"scss",
 		"less",
-		"python",
-		"c",
-		"cpp",
 		'lua',
 		'markdown'
 	}
