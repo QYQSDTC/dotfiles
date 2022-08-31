@@ -25,3 +25,5 @@ These dependencies can be installed via your favorite package manager such as: H
 `clang-format`: C/C++/clang formatting
 
 `isort`: Python import ordering.
+
+`instant-markdown-d`: Preview markdown lively
