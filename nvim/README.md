@@ -23,3 +23,5 @@ These dependencies can be installed via your favorite package manager such as: H
 `cppcheck`: C/C++ diagnostic
 
 `clang-format`: C/C++/clang formatting
+
+`isort`: Python import ordering.
