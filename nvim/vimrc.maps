@@ -1,0 +1,31 @@
+"------------------
+" Key Maps
+"------------------
+"
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
+" Move window
+nmap <Space> <C-w>w
+map s<left> <C-w>h
+map s<right> <C-w>l
+map s<up> <C-w>k
+map s<down> <C-w>j
+map sh <C-w>h
+map sl <C-w>l
+map sk <C-w>k
+map sj <C-w>j
+" Resize window
+nmap <C-w><left> <C-w><
+nmap <C-w><right> <C-w>>
+nmap <C-w><up> <C-w>+
+nmap <C-w><down> <C-w>-
+
+" Tabs
+" --------------
+"  Open current directory
+nmap te :tabedit<Return>
+" Close tabs
+nmap tc :tabclose<Return>
+" Close all other tabs except current one
+nmap to :tabonly<Return>
