@@ -20,13 +20,15 @@ These dependencies can be installed via your favorite package manager such as: H
 
 `prettierd`: prettier dependency
 
-`cppcheck`: C/C++ diagnostic
+~~`cppcheck`: C/C++ diagnostic~~
 
 `clang-format`: C/C++/clang formatting
 
-'ccls': LSP for C/C++
+~~`ccls`: LSP for C/C++~~
 
-'Bear': Tool to generate compilation database for C/C++
+`clangd`: LSP for C/C++ comes with llvm, can offer diagnostic so that cppcheck is not needed any more.
+
+`Bear`: Tool to generate compilation database for C/C++, cland is relied on this.
 
 `isort`: Python import ordering.
 

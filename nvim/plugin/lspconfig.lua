@@ -57,6 +57,9 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 	vim.lsp.protocol.make_client_capabilities()
 )
 
+local clangd_capabilities = capabilities
+clangd_capabilities.offsetEncoding = { "utf-16" }
+
 nvim_lsp.flow.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
@@ -100,13 +103,24 @@ nvim_lsp.pyright.setup {
 	}
 }
 
-nvim_lsp.ccls.setup {
-	on_attach = on_attach,
-	offset_encoding = "utf-8",
-	flags = {
-		debounce_text_changes = 150,
+nvim_lsp.clangd.setup {
+	capabilities = clangd_capabilities,
+	cmd = {
+		"clangd",
+		"--background-index",
+		"--pch-storage=memory",
+		"--clang-tidy",
+		"--suggest-missing-includes",
+		"--cross-file-rename",
+		"--completion-style=detailed",
+	},
+	init_options = {
+		clangdFileStatus = true,
+		usePlaceholders = true,
+		completeUnimported = true,
+		semanticHighlighting = true,
 	}
-	}
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
