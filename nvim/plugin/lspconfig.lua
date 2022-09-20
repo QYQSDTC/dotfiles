@@ -100,6 +100,14 @@ nvim_lsp.pyright.setup {
 	}
 }
 
+nvim_lsp.ccls.setup {
+	on_attach = on_attach,
+	offset_encoding = "utf-8",
+	flags = {
+		debounce_text_changes = 150,
+	}
+	}
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,
