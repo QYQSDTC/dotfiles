@@ -53,12 +53,12 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(
+-- 	vim.lsp.protocol.make_client_capabilities()
+-- )
 
-local clangd_capabilities = capabilities
-clangd_capabilities.offsetEncoding = { "utf-16" }
+-- local clangd_capabilities = capabilities
+-- clangd_capabilities.offsetEncoding = { "utf-16" }
 
 nvim_lsp.flow.setup {
 	on_attach = on_attach,
@@ -104,7 +104,9 @@ nvim_lsp.pyright.setup {
 }
 
 nvim_lsp.clangd.setup {
-	capabilities = clangd_capabilities,
+	capabilities = {
+		offsetEncoding = { "utf-16" },
+	},
 	cmd = {
 		"clangd",
 		"--background-index",

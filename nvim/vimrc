@@ -1,7 +1,7 @@
 " vundle 环境设置
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=/opt/local/share/fzf/vim
+" set rtp+=/opt/homebrew/opt/fzf " use telescope
 source ~/.vimrc.maps
 
 " 插件列表开始
@@ -35,9 +35,9 @@ Plugin 'instant-markdown/vim-instant-markdown'
 Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " LSP configure
 Plugin 'onsails/lspkind-nvim' " vscode-like pictograms
-Plugin 'hrsh7th/cmp-buffer' " nvim-cmp source for buffer words
-Plugin 'hrsh7th/cmp-nvim-lsp' " nvim-cmp source for neovim's built-in LSP
-Plugin 'hrsh7th/nvim-cmp' " Completion
+" Plugin 'hrsh7th/cmp-buffer' " nvim-cmp source for buffer words
+" Plugin 'hrsh7th/cmp-nvim-lsp' " nvim-cmp source for neovim's built-in LSP
+" Plugin 'hrsh7th/nvim-cmp' " Completion
 Plugin 'neovim/nvim-lspconfig' " LSP
 Plugin 'glepnir/lspsaga.nvim' " LSP UIs
 Plugin 'L3MON4D3/LuaSnip' " LuaSnip
@@ -64,12 +64,15 @@ Plugin 'dinhhuy258/git.nvim' " for git blame & browser
 
 Plugin 'lukas-reineke/indent-blankline.nvim' " customize indent lines
 
+" coc.nvim, auto-completion like vscode, use coc.nvim instead of cmp
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Setup NeoVim for LaTex editing
 " Set up vimtex + ultisnips
 Plugin 'sirver/UltiSnips'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsExpandTrigger = '<nop>'  "'<tab>' conflicts with coc.nvim trigger, use CTRL-j instead.
+" let g:UltiSnipsJumpForwardTrigger = '<tab>'
+" let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 Plugin 'lervag/vimtex'
 let &rtp = '~/.vim/bundle/vimtex,' . &rtp
