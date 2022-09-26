@@ -70,9 +70,9 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Setup NeoVim for LaTex editing
 " Set up vimtex + ultisnips
 Plugin 'sirver/UltiSnips'
-let g:UltiSnipsExpandTrigger = '<nop>'  "'<tab>' conflicts with coc.nvim trigger, use CTRL-j instead.
-" let g:UltiSnipsJumpForwardTrigger = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsExpandTrigger = '<a-e>'  "'<tab>' conflicts with coc.nvim trigger
+let g:UltiSnipsJumpForwardTrigger = '<a-a>'
+let g:UltiSnipsJumpBackwardTrigger = '<a-d>'
 
 Plugin 'lervag/vimtex'
 let &rtp = '~/.vim/bundle/vimtex,' . &rtp
