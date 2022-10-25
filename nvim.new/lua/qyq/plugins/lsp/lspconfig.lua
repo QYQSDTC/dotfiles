@@ -24,11 +24,10 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+	keymap.set("n", "gd", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+	keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-	keymap.set("n", "gp", "<cmd>Lspsaga preview_definition<CR>", opts)
 	keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
@@ -84,13 +83,13 @@ lspconfig["tailwindcss"].setup({
 })
 
 -- configure python server
-lspconfig["pyright"].setup({
+lspconfig.pyright.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
 
 -- configure c server
-lspconfig["clangd"].setup({
+lspconfig.clangd.setup {
 	capabilities = {
 		offsetEncoding = { "utf-16" },
 	},
@@ -109,7 +108,8 @@ lspconfig["clangd"].setup({
 		completeUnimported = true,
 		semanticHighlighting = true,
 	},
-})
+  on_attach = on_attach,
+}
 
 -- configure lua server (with special settings)
 lspconfig["sumneko_lua"].setup({
@@ -129,5 +129,25 @@ lspconfig["sumneko_lua"].setup({
 				},
 			},
 		},
+	},
+})
+
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+	underline = true,
+	update_in_insert = false,
+	virtual_text = { spacing = 4, prefix = "●" },
+	severity_sort = true,
+}
+)
+
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = '●'
+	},
+	update_in_insert = true,
+	float = {
+		source = "always", -- Or "if_many"
 	},
 })

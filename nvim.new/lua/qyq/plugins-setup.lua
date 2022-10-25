@@ -57,10 +57,12 @@ return packer.startup(function(use)
 
 	-- bufferline
 	use("akinsho/nvim-bufferline.lua")
+	use("norcalli/nvim-colorizer.lua")
 
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
+	use("nvim-telescope/telescope-file-browser.nvim") -- file browser
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
@@ -101,6 +103,9 @@ return packer.startup(function(use)
 
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+	-- code timing
+	use("wakatime/vim-wakatime")
 
 	if packer_bootstrap then
 		require("packer").sync()

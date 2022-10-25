@@ -39,3 +39,12 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 opt.iskeyword:append("-") -- consider string-string as whole word
+
+-- keep 3 lines from buffer top and bottom
+opt.scrolloff = 3
+
+-- enable mouse
+opt.mouse = "a"
+
+-- enbale area selection
+opt.selection = "exclusive"
