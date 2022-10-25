@@ -107,6 +107,9 @@ return packer.startup(function(use)
 	-- code timing
 	use("wakatime/vim-wakatime")
 
+	-- Markdown preview
+	use("instant-markdown/vim-instant-markdown")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
