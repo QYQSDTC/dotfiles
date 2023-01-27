@@ -42,6 +42,7 @@ mason_null_ls.setup({
 		"eslint_d", -- ts/js linter
 		"cppcheck", -- cpp linter
 		"black", -- python formatter
+		"autopep8", -- another python formatter
 		"isort", -- python package sorter
 		"clang-format", -- c formatter
 		"flake8", -- python linter

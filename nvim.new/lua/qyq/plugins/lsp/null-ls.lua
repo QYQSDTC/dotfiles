@@ -18,7 +18,10 @@ null_ls.setup({
 		--  to disable file types use
 		--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 		formatting.prettier, -- js/ts formatter
-		formatting.black, -- python formatter
+		-- formatting.black.with({
+		--	extra_args = { "--line-length=120" },
+		-- }), -- python formatter
+		formatting.autopep8, -- python formatter
 		formatting.isort, -- python package sorter
 		formatting.clang_format, -- C/Clang formatter.
 		formatting.stylua, -- lua formatter
@@ -32,34 +35,18 @@ null_ls.setup({
 		diagnostics.flake8, -- python linter
 		diagnostics.cppcheck, -- cpp linter
 	},
-	-- configure format on save
-  on_attach = function(client, bufnr)
-		if client.server_capabilities.documentFormattingProvider then
-			vim.api.nvim_clear_autocmds { buffer = 0, group = augroup_format }
+	-- Format on save: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup_format,
-				buffer = 0,
-				callback = function() vim.lsp.buf.formatting_seq_sync() end
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+					vim.lsp.buf.format({ bufnr = bufnr })
+				end,
 			})
 		end
 	end,
-  -- old configure on save
-  -- 	on_attach = function(current_client, bufnr)
-	--	if current_client.supports_method("textDocument/formatting") then
-	--		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	--		vim.api.nvim_create_autocmd("BufWritePre", {
-	--			group = augroup,
-	--			buffer = bufnr,
-	--			callback = function()
-	--				vim.lsp.buf.format({
-	--					filter = function(client)
-  --							--  only use null-ls for formatting instead of lsp server
-  --							return client.name == "null-ls"
-  --						end,
-  --						bufnr = bufnr,
-  --					})
-  --				end,
-  --			})
-  --		end
-  --	end,
 })
