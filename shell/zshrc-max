@@ -322,14 +322,10 @@ eval $(thefuck --alias)
 # MATLAB
 # export PATH="/Applications/MATLAB_R2020a.app/bin:$PATH"
 
-# Python 3.8
-export PATH="$PATH:/Users/qyq/Library/Python/3.8/bin" # user packages first
+# Python
+export PATH="$PATH:/Users/qyq/Library/Python/3.10/bin" # user packages first
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin" # global packages
 # export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages:$PYTHONPATH"
-
-# Python 3.9
-# export PATH="$PATH:/Users/qyq/Library/Python/3.9/bin"
-# Python site-package version: port first.
 
 # PKG Config PATH
 export PKG_CONFIG_PATH='$PKG_CONFIG_PATH:/opt/local/lib/pkgconfig'
@@ -377,3 +373,16 @@ unset __conda_setup
  tailf(){
    tail -f $1 | bat --paging=never -l log 
  }
+
+ # OpenAI API
+export OPENAI_API_KEY='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'
+
+# rclone
+# mount alist:/OnePiece/阿里云盘
+mount_aliyun(){
+  rclone mount AList:/OnePiece/阿里云盘 /Users/qyq/WebDAV/Aliyun --cache-dir /Volumes/WD_BLACK/rclone/Aliyun --allow-other --vfs-cache-mode full --vfs-cache-max-size 100G --vfs-cache-max-age 12h --vfs-read-ahead 64M --buffer-size 64M --fast-list --transfers 4 --checkers 4 --low-level-retries 5 --header "Referer:https://www.aliyundrive.com/drive" --daemon --log-file /Volumes/WD_BLACK/rclone/rclone_Ali.log --log-level INFO
+}
+# mount pikpak
+mount_pikpak(){
+  rclone mount AList:/OnePiece/PikPak /Users/qyq/WebDAV/PikPak --cache-dir /Volumes/WD_BLACK/rclone/PikPak --allow-other --vfs-cache-mode full --vfs-cache-max-size 100G --vfs-cache-max-age 12h --vfs-read-ahead 64M --buffer-size 64M --fast-list --transfers 4 --checkers 4 --low-level-retries 5 --header "Referer:https://www.mypikpak.com" --daemon --log-file /Volumes/WD_BLACK/rclone/rclone_pik.log --log-level INFO
+}
