@@ -83,13 +83,13 @@ lspconfig["tailwindcss"].setup({
 })
 
 -- configure python server
-lspconfig.pyright.setup {
+lspconfig.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-}
+})
 
 -- configure c server
-lspconfig.clangd.setup {
+lspconfig.clangd.setup({
 	capabilities = {
 		offsetEncoding = { "utf-16" },
 	},
@@ -108,14 +108,15 @@ lspconfig.clangd.setup {
 		completeUnimported = true,
 		semanticHighlighting = true,
 	},
-  on_attach = on_attach,
-}
+	on_attach = on_attach,
+})
 
 -- configure lua server (with special settings)
-lspconfig["sumneko_lua"].setup({
+lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	settings = { -- custom settings for lua
+	settings = {
+		-- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
 			diagnostics = {
@@ -132,19 +133,16 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,
 	update_in_insert = false,
 	virtual_text = { spacing = 4, prefix = "●" },
 	severity_sort = true,
-}
-)
+})
 
 vim.diagnostic.config({
 	virtual_text = {
-		prefix = '●'
+		prefix = "●",
 	},
 	update_in_insert = true,
 	float = {
