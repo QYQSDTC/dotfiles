@@ -1,0 +1,95 @@
+Host github.com
+  HostName ssh.github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/github2
+  Port 443 # 梯子封禁了22端口
+
+Host ls6
+  Hostname ls6.tacc.utexas.edu
+  User qyqstc
+  LocalForward 1105 localhost:1105
+  ControlMaster auto
+  ControlPath /tmp/ssh-%r@%h:%p
+  ControlPersist 10m
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ls6_max
+  ServerAliveInterval 60
+  ServerAliveCountMax 5
+
+Host s2
+  Hostname stampede2.tacc.utexas.edu
+  User qyqstc
+  Controlmaster auto
+  Controlpath /tmp/ssh-%r@%h:%p
+  ControlPersist 10m
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_s2
+  ServerAliveInterval 60
+  ServerAliveCountMax 5
+
+Host hust
+  Hostname 100.78.41.76 
+	User qyq
+  LocalForward 1105 localhost:1105
+	Controlmaster auto
+	Controlpath /tmp/ssh-%r@%h:%p
+	ControlPersist 1h
+	AddKeysToAgent yes
+	IdentityFile ~/.ssh/hust
+	ServerAliveInterval 10
+	ServerAliveCountMax 5
+
+Host hust2
+  Hostname 115.156.146.228
+	User qyq
+	Controlmaster auto
+	Controlpath /tmp/ssh-%r@%h:%p
+	ControlPersist 1h
+	AddKeysToAgent yes
+	IdentityFile ~/.ssh/hust2
+	ServerAliveInterval 10
+	ServerAliveCountMax 5
+
+Host gwgpu
+  Hostname 100.96.64.74
+  User qyq
+  Controlmaster auto
+  Controlpath /tmp/ssh-%r@%h:%p
+  ControlPersist 1h
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/hustgpu
+  ServerAliveInterval 10
+  ServerAliveCountMax 5
+
+Host mini
+	HostName 100.82.188.57
+	User yiqianqian
+  LocalForward 7191 localhost:7191
+	ControlMaster auto
+	Controlpath /tmp/ssh-%r@%h:%p
+	ControlPersist 10m	
+	AddKeysToAgent yes
+	IdentityFile ~/.ssh/macmini
+	ServerAliveInterval 60	
+	ServerAliveCountMax 5	
+
+Host CGE
+  Hostname 202.114.0.141
+  Port 21150
+  LocalForward 7190 localhost:7190
+  User ud202180035
+  ControlMaster auto
+  ControlPath /tmp/ssh-%r@%h:%p
+  ControlPersist 10m
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/CGE
+  ServerAliveInterval 10
+  ServerAliveCountMax 5
+
+Host Ali
+  Hostname 47.97.245.224
+  User root
+  IdentityFile ~/.ssh/aliyun.pem
+  AddKeysToAgent yes
+  UseKeychain yes
